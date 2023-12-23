@@ -1,5 +1,5 @@
 {% set name = "openal-soft" %}
-{% set version = "1.22.2" %}
+{% set version = "1.23.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/kcat/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 3e58f3d4458f5ee850039b1a6b4dac2343b3a5985a6a2e7ae2d143369c5b8135
+  sha256: dfddf3a1f61059853c625b7bb03de8433b455f2f79f89548cbcbd5edca3d4a4a
 
 build:
   number: 0
