@@ -6,4 +6,5 @@ cmake ${CMAKE_ARGS} \
       -D CMAKE_INSTALL_LIBDIR=lib     \
       $SRC_DIR
 
-make install
+cmake --build . --config Release -- -j$CPU_COUNT
+cmake --build . --config Release --target install
