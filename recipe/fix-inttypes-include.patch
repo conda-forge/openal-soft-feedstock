@@ -1,0 +1,13 @@
+diff --git a/al/source.cpp b/al/source.cpp
+index cba33862..733f943b 100644
+--- a/al/source.cpp
++++ b/al/source.cpp
+@@ -31,7 +31,7 @@
+ #include <cmath>
+ #include <cstdint>
+ #include <functional>
+-#include <inttypes.h>
++#include <cinttypes>
+ #include <iterator>
+ #include <limits>
+ #include <memory>
