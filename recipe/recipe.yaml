@@ -1,0 +1,61 @@
+context:
+  name: openal-soft
+  version: 1.24.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/kcat/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: e1b6ec960e00bfed3d480330274b0f102dc10e4ae0dbb70fd9db80d6978165b1
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then: make
+  run_exports:
+    - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then:
+          - test -f ${PREFIX}/lib/cmake/OpenAL/OpenALConfig.cmake
+          - test -f ${PREFIX}/bin/altonegen
+          - test -f ${PREFIX}/bin/alrecord
+          - test -f ${PREFIX}/bin/openal-info
+      - if: win
+        then:
+          - if exist %LIBRARY_LIB%\\cmake\\OpenAL\\OpenALConfig.cmake (exit 0) else (exit 1)
+          -  if exist %LIBRARY_BIN%\\altonegen.exe (exit 0) else (exit 1)
+          - if exist %LIBRARY_BIN%\\alrecord.exe (exit 0) else (exit 1)
+          - if exist %LIBRARY_BIN%\\openal-info.exe (exit 0) else (exit 1)
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: COPYING
+  summary: OpenAL Soft is a software implementation of the OpenAL 3D audio API.
+  description: |
+    OpenAL Soft is an LGPL-licensed, cross-platform, software implementation of
+    the OpenAL 3D audio API. It's forked from the open-sourced Windows version
+    available originally from openal.org's SVN repository (now defunct). OpenAL
+    provides capabilities for playing audio in a virtual 3D environment. Distance
+    attenuation, doppler shift, and directional sound emitters are among the
+    features handled by the API. More advanced effects, including air absorption,
+    occlusion, and environmental reverb, are available through the EFX extension.
+    It also facilitates streaming audio, multi-channel buffers, and audio capture.
+  homepage: https://github.com/kcat/openal-soft
+  repository: https://github.com/kcat/openal-soft
+  documentation: https://openal-soft.org
+
+extra:
+  recipe-maintainers:
+    - martinRenou
+    - Tobias-Fischer
