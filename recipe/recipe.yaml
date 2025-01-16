@@ -1,6 +1,6 @@
 context:
   name: openal-soft
-  version: 1.24.1
+  version: "1.24.2"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/kcat/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: e1b6ec960e00bfed3d480330274b0f102dc10e4ae0dbb70fd9db80d6978165b1
+  sha256: 7efd383d70508587fbc146e4c508771a2235a5fc8ae05bf6fe721c20a348bd7c
 
 build:
   number: 0
@@ -34,7 +34,7 @@ tests:
       - if: win
         then:
           - if exist %LIBRARY_LIB%\\cmake\\OpenAL\\OpenALConfig.cmake (exit 0) else (exit 1)
-          -  if exist %LIBRARY_BIN%\\altonegen.exe (exit 0) else (exit 1)
+          - if exist %LIBRARY_BIN%\\altonegen.exe (exit 0) else (exit 1)
           - if exist %LIBRARY_BIN%\\alrecord.exe (exit 0) else (exit 1)
           - if exist %LIBRARY_BIN%\\openal-info.exe (exit 0) else (exit 1)
 
