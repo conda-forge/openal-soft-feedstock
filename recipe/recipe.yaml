@@ -25,7 +25,9 @@ requirements:
 tests:
   - package_contents:
       lib:
-        - OpenAL32
+        - if: win
+          then: OpenAL32
+          else: openal
       include: 
         - AL/al.h
       bin:
