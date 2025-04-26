@@ -2,7 +2,8 @@
 
 CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 
-cmake ${CMAKE_ARGS} \
+cmake -G "Ninja" \
+      ${CMAKE_ARGS} \
       -D CMAKE_BUILD_TYPE=Release     \
       -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D CMAKE_INSTALL_LIBDIR=lib     \

@@ -18,25 +18,22 @@ requirements:
     - ${{ compiler('cxx') }}
     - ${{ stdlib("c") }}
     - cmake
-    - if: unix
-      then: make
+    - ninja
   run_exports:
     - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
 
 tests:
-  - script:
-      - if: unix
-        then:
-          - test -f ${PREFIX}/lib/cmake/OpenAL/OpenALConfig.cmake
-          - test -f ${PREFIX}/bin/altonegen
-          - test -f ${PREFIX}/bin/alrecord
-          - test -f ${PREFIX}/bin/openal-info
-      - if: win
-        then:
-          - if exist %LIBRARY_LIB%\\cmake\\OpenAL\\OpenALConfig.cmake (exit 0) else (exit 1)
-          - if exist %LIBRARY_BIN%\\altonegen.exe (exit 0) else (exit 1)
-          - if exist %LIBRARY_BIN%\\alrecord.exe (exit 0) else (exit 1)
-          - if exist %LIBRARY_BIN%\\openal-info.exe (exit 0) else (exit 1)
+  - package_contents:
+      lib:
+        - OpenAL32
+      include: 
+        - AL/al.h
+      bin:
+        - altonegen
+        - alrecord
+        - openal-info
+      files: 
+        - ${{ "Library" if win }}/lib/cmake/OpenAL/OpenALConfig.cmake
 
 about:
   license: LGPL-2.0-or-later
