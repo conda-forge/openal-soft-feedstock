@@ -35,7 +35,7 @@ tests:
         - alrecord
         - openal-info
       files: 
-        - ${{ "Library" if win }}/lib/cmake/OpenAL/OpenALConfig.cmake
+        - ${{ "Library/" if win }}lib/cmake/OpenAL/OpenALConfig.cmake
 
 about:
   license: LGPL-2.0-or-later
