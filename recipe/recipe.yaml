@@ -28,13 +28,13 @@ tests:
         - if: win
           then: OpenAL32
           else: openal
-      include: 
+      include:
         - AL/al.h
       bin:
         - altonegen
         - alrecord
         - openal-info
-      files: 
+      files:
         - ${{ "Library/" if win }}lib/cmake/OpenAL/OpenALConfig.cmake
 
 about:
