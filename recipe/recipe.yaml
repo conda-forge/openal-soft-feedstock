@@ -19,8 +19,10 @@ requirements:
     - ${{ stdlib("c") }}
     - cmake
     - ninja
-  host:
+    - git
     - ${{ "clang-format" if osx }}
+  host:
+    - zlib
   run_exports:
     - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
 tests:
