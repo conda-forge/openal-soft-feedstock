@@ -20,9 +20,14 @@ requirements:
     - cmake
     - ninja
     - git
+    - pkg-config
     - ${{ "clang-format" if osx }}
   host:
     - zlib
+    - pulseaudio
+    - dbus
+    - alsa-lib
+    - libsndfile
   run_exports:
     - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
 tests:
