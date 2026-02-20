@@ -1,6 +1,6 @@
 context:
   name: openal-soft
-  version: "1.24.3"
+  version: "1.25.1"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/kcat/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 7e1fecdeb45e7f78722b776c5cf30bd33934b961d7fd2a11e0494e064cc631ce
+  sha256: 5f8efe8dfba5e9307a50251ba615ace857c7fa9dddfe34130b83e213d7f7cf24
 
 build:
   number: 0
@@ -19,9 +19,17 @@ requirements:
     - ${{ stdlib("c") }}
     - cmake
     - ninja
+    - git
+    - pkg-config
+    - ${{ "clang-tools" if osx }}
+  host:
+    - zlib
+    - ${{ "pulseaudio" if linux }}
+    - ${{ "dbus" if linux or osx }}
+    - ${{ "alsa-lib" if linux }}
+    - ${{ "libsndfile" if not (win and arm64) }}
   run_exports:
     - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
-
 tests:
   - package_contents:
       lib:
@@ -31,8 +39,6 @@ tests:
       include:
         - AL/al.h
       bin:
-        - altonegen
-        - alrecord
         - openal-info
       files:
         - ${{ "Library/" if win }}lib/cmake/OpenAL/OpenALConfig.cmake
