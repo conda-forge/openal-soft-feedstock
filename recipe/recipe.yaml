@@ -39,8 +39,6 @@ tests:
       include:
         - AL/al.h
       bin:
-        - altonegen
-        - alrecord
         - openal-info
       files:
         - ${{ "Library/" if win }}lib/cmake/OpenAL/OpenALConfig.cmake
