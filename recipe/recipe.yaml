@@ -21,13 +21,13 @@ requirements:
     - ninja
     - git
     - pkg-config
-    - ${{ "clang-format" if osx }}
+    - ${{ "clang-tools" if osx }}
   host:
     - zlib
     - ${{ "pulseaudio" if linux }}
     - ${{ "dbus" if linux or osx }}
     - ${{ "alsa-lib" if linux }}
-    - libsndfile
+    - ${{ "libsndfile" if not (win and arm64) }}
   run_exports:
     - ${{ pin_subpackage('openal-soft', upper_bound='x.x') }}
 tests:
