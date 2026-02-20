@@ -15,7 +15,7 @@ cxx_compiler_version:
 dbus:
 - '1'
 docker_image:
-- quay.io/condaforge/linux-anvil-ppc64le:alma9
+- quay.io/condaforge/linux-anvil-x86_64:alma9
 libsndfile:
 - '1.2'
 pulseaudio:
