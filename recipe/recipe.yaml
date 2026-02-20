@@ -24,7 +24,7 @@ requirements:
     - ${{ "clang-format" if osx }}
   host:
     - zlib
-    - pulseaudio
+    - ${{ "pulseaudio" if linux }}
     - dbus
     - alsa-lib
     - libsndfile
