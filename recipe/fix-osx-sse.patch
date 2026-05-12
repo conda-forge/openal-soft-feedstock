@@ -16,7 +16,7 @@ index d364b063ba..f40c6504c4 100644
                  for(auto j = 0_uz;j < mCoeffs.size();j+=4)
                  {
 -                    const auto coeffs = _mm_load_ps(&mCoeffs[j]);
-+                    const auto coeffs = _mm_loadu_ps(&mCoeffs[j]);
++                    const auto coeffs = _mm_loadu_ps(mCoeffs.data() + j);
                      const auto s0 = _mm_loadu_ps(&src[j*2]);
                      const auto s1 = _mm_loadu_ps(&src[j*2 + 4]);
                      const auto s2 = _mm_movehl_ps(_mm_movelh_ps(s1, s1), s0);
@@ -25,7 +25,7 @@ index d364b063ba..f40c6504c4 100644
                  for(auto j = 0_uz;j < mCoeffs.size();j+=4)
                  {
 -                    const auto coeffs = _mm_load_ps(&mCoeffs[j]);
-+                    const auto coeffs = _mm_loadu_ps(&mCoeffs[j]);
++                    const auto coeffs = _mm_loadu_ps(mCoeffs.data() + j);
                      const auto s = _mm_setr_ps(src[j*2], src[j*2 + 2], src[j*2 + 4], src[j*2 + 6]);
                      r4 = _mm_add_ps(r4, _mm_mul_ps(s, coeffs));
                  }
