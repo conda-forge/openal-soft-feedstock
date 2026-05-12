@@ -9,6 +9,8 @@ package:
 source:
   url: https://github.com/kcat/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
   sha256: fb27e5839aa11f0e5b9d33756965291fad5d6909ab928ea1f796f4a1a6877894
+  patches:
+    - fix-osx-sse.patch
 
 build:
   number: 0
