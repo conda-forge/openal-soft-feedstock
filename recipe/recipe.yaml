@@ -1,6 +1,6 @@
 context:
   name: openal-soft
-  version: "1.25.1"
+  version: "1.25.2"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/kcat/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 5f8efe8dfba5e9307a50251ba615ace857c7fa9dddfe34130b83e213d7f7cf24
+  sha256: fb27e5839aa11f0e5b9d33756965291fad5d6909ab928ea1f796f4a1a6877894
 
 build:
   number: 0
