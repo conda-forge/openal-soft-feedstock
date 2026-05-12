@@ -1,0 +1,31 @@
+From 9e9c2f40572ff7c002a2d31451f7e3220d1c5cb2 Mon Sep 17 00:00:00 2001
+From: Tobias Fischer <info@tobiasfischer.info>
+Date: Wed, 13 May 2026 08:09:29 +1000
+Subject: [PATCH] Fix memory access for coefficients in phase shifter
+
+---
+ alsoft-modules/phase_shifter.cppm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/alsoft-modules/phase_shifter.cppm b/alsoft-modules/phase_shifter.cppm
+index d364b063ba..f40c6504c4 100644
+--- a/alsoft-modules/phase_shifter.cppm
++++ b/alsoft-modules/phase_shifter.cppm
+@@ -150,7 +150,7 @@ public:
+                 auto r3 = _mm_setzero_ps();
+                 for(auto j = 0_uz;j < mCoeffs.size();j+=4)
+                 {
+-                    const auto coeffs = _mm_load_ps(&mCoeffs[j]);
++                    const auto coeffs = _mm_load_ps(mCoeffs.data() + j);
+                     const auto s0 = _mm_loadu_ps(&src[j*2]);
+                     const auto s1 = _mm_loadu_ps(&src[j*2 + 4]);
+                     const auto s2 = _mm_movehl_ps(_mm_movelh_ps(s1, s1), s0);
+@@ -182,7 +182,7 @@ public:
+                 auto r4 = _mm_setzero_ps();
+                 for(auto j = 0_uz;j < mCoeffs.size();j+=4)
+                 {
+-                    const auto coeffs = _mm_load_ps(&mCoeffs[j]);
++                    const auto coeffs = _mm_load_ps(mCoeffs.data() + j);
+                     const auto s = _mm_setr_ps(src[j*2], src[j*2 + 2], src[j*2 + 4], src[j*2 + 6]);
+                     r4 = _mm_add_ps(r4, _mm_mul_ps(s, coeffs));
+                 }
